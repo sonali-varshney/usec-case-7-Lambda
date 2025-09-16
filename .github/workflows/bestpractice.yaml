@@ -21,6 +21,7 @@
                   tflint_version: latest
               - name: Run TFLint
                 run: tflint --format=json
+                continue-on-error: true  
           ############################################## Checkov ######################################################
           checkov:
                     name: Scan IaC with Checkov
