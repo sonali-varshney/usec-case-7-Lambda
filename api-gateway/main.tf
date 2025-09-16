@@ -8,7 +8,7 @@ resource "aws_api_gateway_rest_api" "MyDemoAPI" {
 resource "aws_api_gateway_resource" "MyDemoResource" {
   rest_api_id = aws_api_gateway_rest_api.MyDemoAPI.id
   parent_id   = aws_api_gateway_rest_api.MyDemoAPI.root_resource_id
-  path_part   = "/mydemoresource"
+  path_part   = "mydemoresource"
 }
 
 # 3. Create a method for the resource. This is a GET method.
@@ -65,3 +65,5 @@ resource "aws_lambda_permission" "allow_api_gateway" {
 }
 
 
+# Note: isko invoke krne k liye we have to deploy fom front end, get api gateway ki invoke url , usko /<jo path dia h vo daalo>
+# here <apigatewayurl>/mydemoresource
