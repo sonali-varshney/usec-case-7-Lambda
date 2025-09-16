@@ -40,8 +40,8 @@
                         with:
                           directory: .
                           output_format: sarif,cli
-                          output_file_path: results.sarif
-                          soft_fail: true
+                          output_file_path: results.sarif #kuch kaam ka ni h
+                          soft_fail: true # it will not break cicd flow if it fails
                 
                       # - name: Upload SARIF file to GitHub Code Scanning
                       #   uses: github/codeql-action/upload-sarif@v3
@@ -82,8 +82,10 @@
                 - name: Configure AWS credentials
                   uses: aws-actions/configure-aws-credentials@v4
                   with:
-                    role-to-assume: arn:aws:iam::897722687643:role/github_actions
+                   # role-to-assume: arn:aws:iam::897722687643:role/github_actions
                     aws-region: us-east-1
+                    aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+                    aws-secret-access-key: ${{ secrets.SECRET_KEY }}
 
                 - name: Setup Terraform
                   uses: hashicorp/setup-terraform@v3

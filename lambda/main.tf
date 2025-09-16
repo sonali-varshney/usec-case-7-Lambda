@@ -1,6 +1,6 @@
 # Lambda function
 resource "aws_lambda_function" "example" {
-  filename         = hello_world.zip # NOTE: Zip file with your code
+  filename         = "hello_world.zip" # NOTE: Zip file with your code
   function_name    = "my_lambda_function"
   role             = var.role #aws_iam_role.example.arn
   handler          = "hello_world.lambda_handler"  #NOTE : <filename without py extension>.<function name>
