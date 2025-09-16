@@ -6,6 +6,7 @@ module "apigateway"{
 
 module "secgp"{
     source = "./secgp"
+    vpcid = module.vpc.vpcid
 }
 
 module "lambda"{

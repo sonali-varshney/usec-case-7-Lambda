@@ -1,7 +1,7 @@
 resource "aws_security_group" "lambda_sg" {
   name        = "lambda_sg"
   description = "Allow outbound traffic for Lambda function"
-  vpc_id      = aws_vpc.lambda_vpc.id
+  vpc_id      = var.vpcid
 
   egress {
     from_port   = 0

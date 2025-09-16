@@ -45,7 +45,19 @@ resource "aws_route_table_association" "associate_with_pub_subnet" {
   subnet_id      = aws_subnet.pubsubnet.id   #NOTE
   route_table_id = aws_route_table.pub_route_table.id
 }
+resource "aws_eip" "my_elastic_ip" {
+  #count = 1
+  #vpc   = true
+}
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.my_elastic_ip.id
+  subnet_id     = aws_subnet.pubsubnet.id #aws_subnet.pubsubnet[*].id
 
+  tags = {
+    Name = "NAT gw"
+  }
+  depends_on = [aws_internet_gateway.igw]
+}
 
 resource "aws_subnet" "prv_subnet" {
   vpc_id     = aws_vpc.vpcdemo.id
