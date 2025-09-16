@@ -9,9 +9,9 @@ jobs:
     # defaults:
     #   run:
     #     working-directory: microservices
-    # permissions:    # NOTE
-    #   id-token: write
-    #   contents: read
+    permissions:    # NOTE
+      id-token: write
+      contents: read
     steps:
      - name: Checkout
        uses: actions/checkout@v5.0.0
@@ -25,17 +25,17 @@ jobs:
        uses: aws-actions/configure-aws-credentials@v4
        with:
          aws-region: us-east-1
-         #role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}  #created a secret for storing role_arn. ARN of the role to assume.
-         aws-access-key-id: ${{ secrets.ACCESS_KEY }}
-         aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+         role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}  #created a secret for storing role_arn. ARN of the role to assume.
+         #aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+         #aws-secret-access-key: ${{ secrets.SECRET_KEY }}
 
    #  - name: Test AWS Connection
    #    run:  aws sts get-caller-identity # if it is succeeded , it will show assumed IAM role. It will fail if you slct another branch bcz in OIDC we gave main branch
         
      - name: init
        run: terraform init
-     - name: validate
-       run: terraform validate     
+     # - name: validate
+     #   run: terraform validate     
 
     #  - name: Setup TFLint
     #    uses: terraform-linters/setup-tflint@v5.0.0
@@ -58,8 +58,8 @@ jobs:
     
 
 
-     - name: destroy
-       run: terraform destroy -auto-approve
+     # - name: destroy
+     #   run: terraform destroy -auto-approve
 
        
 
