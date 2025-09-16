@@ -8,7 +8,7 @@ resource "aws_api_gateway_rest_api" "MyDemoAPI" {
 resource "aws_api_gateway_resource" "MyDemoResource" {
   rest_api_id = aws_api_gateway_rest_api.MyDemoAPI.id
   parent_id   = aws_api_gateway_rest_api.MyDemoAPI.root_resource_id
-  path_part   = "mydemoresource"
+  path_part   = "/mydemoresource"
 }
 
 # 3. Create a method for the resource. This is a GET method.
@@ -61,7 +61,7 @@ resource "aws_lambda_permission" "allow_api_gateway" {
   action        = "lambda:InvokeFunction"
   function_name = var.function_name  #aws_lambda_function.my_lambda.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.MyDemoAPI.execution_arn}/*/*"
+  source_arn    = "${aws_api_gateway_rest_api.MyDemoAPI.execution_arn}/*/*/*"
 }
 
 
