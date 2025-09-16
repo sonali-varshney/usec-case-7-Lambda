@@ -1,5 +1,5 @@
 module "apigateway"{
-    source = "./lambda"
+    source = "./api-gateway"
     lambda_uri = module.lambda.lambda_invoke_arn
     function_name = module.lambda.function_name 
 }
@@ -9,7 +9,7 @@ module "secgp"{
 }
 
 module "lambda"{
-    source = "./apigateway"
+    source = "./lambda"
     role = module.apigateway.role
     lambda_sec_gp = [module.secgp.lambda_sec_gp]
     prvsubnet = [module.vpc.prvsubnet]
