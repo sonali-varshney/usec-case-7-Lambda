@@ -10,7 +10,7 @@ module "secgp"{
 
 module "lambda"{
     source = "./lambda"
-    role = module.apigateway.role
+    role = module.iam.role
     lambda_sec_gp = [module.secgp.lambda_sec_gp]
     prvsubnet = [module.vpc.prvsubnet]
 }
