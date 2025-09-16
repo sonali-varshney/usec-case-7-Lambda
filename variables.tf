@@ -1,11 +1,11 @@
 variable "pub_cidr_block"{
-   # type = list
-    default = "10.0.0.0/24"
+    type        = tuple([string])
+    default = ["10.0.0.0/24"]
 }
 
 variable "prv_cidr_block"{
-   # type = list
-    default = "10.0.2.0/24"
+    type        = tuple([string])
+    default = ["10.0.2.0/24"]
 }
 
 variable "pub_availability_zone"{

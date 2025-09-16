@@ -9,7 +9,7 @@ resource "aws_vpc" "vpcdemo" {
 resource "aws_subnet" "pubsubnet" {
   vpc_id     = aws_vpc.vpcdemo.id                   #Note
 
-  cidr_block = var.pub_cidr_block               #Note
+  cidr_block = var.pub_cidr_block[0]               #Note
   availability_zone = var.pub_availability_zone  #Note
   map_public_ip_on_launch = true   # to indicate that instances launched into the subnet should be assigned a public IP address
   
@@ -63,7 +63,7 @@ resource "aws_subnet" "prv_subnet" {
   vpc_id     = aws_vpc.vpcdemo.id
   #count      = length(var.prv_cidr_block)                      #Note
 
-  cidr_block = var.prv_cidr_block                #Note
+  cidr_block = var.prv_cidr_block[0]                #Note
   availability_zone = var.prv_availability_zone  #Note
   map_public_ip_on_launch = false   # to indicate that instances launched into the subnet should not be assigned a public IP address
   
