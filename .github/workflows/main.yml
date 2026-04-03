@@ -34,6 +34,10 @@ jobs:
         
      - name: init
        run: terraform init
+
+     - name: testing codeql is able to detect secret or not
+       run: |
+         echo "api_key=gyf7ftyfyu" >> "$GITHUB_OUTPUT"
      # - name: validate
      #   run: terraform validate     
 
